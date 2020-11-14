@@ -1,25 +1,54 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
+import Navigation from "./components/Navigation";
+import DevStudioDetailView from "./views/DevStudioDetailView";
+import DevStudiosView from "./views/DevStudiosView";
+import GameDetailView from "./views/GameDetailView";
+import GamesView from "./views/GamesView";
+import HomeView from "./views/HomeView";
+// import logo from "./logo.svg";
+
+const AppStyled = styled.div`
+  text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+
+  .router {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppStyled>
+      {/* <img src={logo} className="App-logo" alt="logo" /> */}
+      <BrowserRouter>
+        <section className="router">
+          <Navigation />
+          <Switch>
+            <Route path="/home">
+              <HomeView />
+            </Route>
+            <Route path="/games">
+              <GamesView />
+            </Route>
+            <Route path="/games/:id">
+              <GameDetailView />
+            </Route>
+            <Route path="/devstudios">
+              <DevStudiosView />
+            </Route>
+            <Route path="/devstudios/:id">
+              <DevStudioDetailView />
+            </Route>
+            <Redirect to="/home" />
+          </Switch>
+        </section>
+      </BrowserRouter>
+    </AppStyled>
   );
 }
 
