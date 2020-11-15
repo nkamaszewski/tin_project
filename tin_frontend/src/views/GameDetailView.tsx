@@ -9,6 +9,7 @@ import { PathParams } from "../types/Params";
 const GameDetailViewStyled = styled.div`
   padding: 60px;
   article {
+    padding: 16px;
     width: 800px;
     height: 600px;
 
@@ -19,6 +20,30 @@ const GameDetailViewStyled = styled.div`
       max-width: 400px;
       max-height: 300px;
     }
+
+    .details {
+      p {
+        padding: 8px 0;
+        font-size: 20px;
+        font-weight: bold;
+
+        .devStudioName:hover {
+          cursor: pointer;
+          color: #ffd000;
+        }
+      }
+    }
+  }
+
+  .price,
+  .buy {
+    margin: 8px 0;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .buy:hover {
+    cursor: pointer;
   }
 `;
 
@@ -40,12 +65,21 @@ const GameDetailView = () => {
         {game && (
           <Card>
             <article>
-              <img className="gameImg" src={(game as Game).photoPath} />
               <div>
+                <img className="gameImg" src={(game as Game).photoPath} />
+                <p className="price">Price: {(game as Game).price}$</p>
+                <button className="buy">buy it!</button>
+              </div>
+              <div className="details">
                 <p>{(game as Game).name}</p>
-                <p>{(game as Game).releaseDate.toDateString()}</p>
+                <p>Premiere: {(game as Game).releaseDate.toDateString()}</p>
                 <p>{(game as Game).description}</p>
-                <p>{(game as Game).devStudio.name}</p>
+                <p>
+                  Created by{" "}
+                  <span className="devStudioName">
+                    {(game as Game).devStudio.name}
+                  </span>
+                </p>
               </div>
             </article>
           </Card>

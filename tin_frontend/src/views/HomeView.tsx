@@ -1,6 +1,9 @@
 import React from "react";
 import { ImSwitch } from "react-icons/im";
 import styled from "styled-components";
+import GamesList from "../components/Lists/GamesList";
+import { mockGames } from "../mocks/mockGames";
+import { Game } from "../types/Game";
 import { User } from "../types/User";
 
 const HomeViewStyled = styled.div`
@@ -25,9 +28,11 @@ const HomeViewStyled = styled.div`
   .userGames {
     padding: 40px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     h2 {
+      margin: 24px 0;
       font-size: 22px;
     }
   }
@@ -50,6 +55,11 @@ const HomeView = ({ user: { firstName, lastName, email } }: Props) => {
       </section>
       <section className="userGames">
         <h2>Last bougth games:</h2>
+        <GamesList
+          list={mockGames.filter(
+            (game: Game) => game.devStudio.id === "887666jdladlsak"
+          )}
+        />
       </section>
     </HomeViewStyled>
   );
