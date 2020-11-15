@@ -30,19 +30,19 @@ function App() {
         <section className="router">
           <Navigation />
           <Switch>
-            <Route path="/home">
+            <Route path="/home" exact>
               <HomeView user={user} />
             </Route>
-            <Route path="/games">
+            <Route path="/games" exact>
               <GamesView />
             </Route>
-            <Route path="/games/:id">
+            <Route path="/games/:id" exact>
               <GameDetailView />
             </Route>
-            <Route path="/devstudios">
+            <Route path="/devstudios" exact>
               <DevStudiosView />
             </Route>
-            <Route path="/devstudios/:id">
+            <Route path="/devstudios/:id" exact>
               <DevStudioDetailView />
             </Route>
             <Redirect to="/home" />

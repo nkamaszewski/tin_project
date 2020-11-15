@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import Card from "../components/Card";
 import { mockGames } from "../mocks/mockGames";
@@ -24,6 +25,9 @@ const GamesViewStyled = styled.div`
 `;
 
 const GamesView = () => {
+  const history = useHistory();
+  const handleOnCardContainerClick = (id: string) =>
+    history.push(`/games/${id}`);
   return (
     <GamesViewStyled>
       <header className="listHeader">
@@ -33,7 +37,11 @@ const GamesView = () => {
         <p>price:</p>
       </header>
       {mockGames.map(({ id, name, releaseDate, devStudio, price }: Game) => (
-        <div key={id} className="cardContainer">
+        <div
+          key={id}
+          className="cardContainer"
+          onClick={() => handleOnCardContainerClick(id)}
+        >
           <Card style={{ marginBottom: "12px" }}>
             <section className="gameContent">
               <p>{name}</p>

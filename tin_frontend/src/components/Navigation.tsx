@@ -54,7 +54,7 @@ const Navigation = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="devstudios" className="navLink">
+          <NavLink to="/devstudios" className="navLink">
             <BsCodeSlash />
             <p> Developer studios</p>
           </NavLink>

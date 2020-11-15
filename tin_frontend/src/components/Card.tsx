@@ -7,7 +7,7 @@ const CardStyled = styled.div`
 `;
 interface Props {
   children: JSX.Element;
-  style: Object;
+  style?: Object;
 }
 
 const Card = ({ children, style }: Props) => {
