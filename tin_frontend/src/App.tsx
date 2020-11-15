@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import Navigation from "./components/Navigation";
+import { mockUser } from "./mocks/mockUser";
 import DevStudioDetailView from "./views/DevStudioDetailView";
 import DevStudiosView from "./views/DevStudiosView";
 import GameDetailView from "./views/GameDetailView";
@@ -10,7 +11,6 @@ import HomeView from "./views/HomeView";
 // import logo from "./logo.svg";
 
 const AppStyled = styled.div`
-  text-align: center;
   background-color: #282c34;
   min-height: 100vh;
   color: white;
@@ -22,6 +22,7 @@ const AppStyled = styled.div`
 `;
 
 function App() {
+  const [user, setUser] = useState(mockUser);
   return (
     <AppStyled>
       {/* <img src={logo} className="App-logo" alt="logo" /> */}
@@ -30,7 +31,7 @@ function App() {
           <Navigation />
           <Switch>
             <Route path="/home">
-              <HomeView />
+              <HomeView user={user} />
             </Route>
             <Route path="/games">
               <GamesView />

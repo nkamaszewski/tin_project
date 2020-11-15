@@ -1,15 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import { User } from "../types/User";
 
 const HomeViewStyled = styled.div`
-  color: white;
+  .userSection {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+  }
 `;
 
-const HomeView = () => {
+interface Props {
+  user: User;
+}
+
+const HomeView = ({ user: { firstName, lastName, email } }: Props) => {
   return (
     <HomeViewStyled>
-      <p>Profil gracza</p>
-      <p>kupione gry</p>
+      <section className="userSection">
+        <p>First name: {firstName}</p>
+        <p>Last name: {lastName}</p>
+        <p>Email: {email}</p>
+      </section>
+      <h3>Last bougth games:</h3>
     </HomeViewStyled>
   );
 };
