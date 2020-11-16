@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import styled from "styled-components";
 import Card from "../components/Card";
 import { mockGames } from "../mocks/mockGames";
@@ -53,11 +53,16 @@ const GameDetailView = () => {
     setGame: Function
   ] = useState(null);
   const { id }: PathParams = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     const g = mockGames.find((game: Game) => game.id === id);
     setGame(g);
   }, []);
+
+  const handleOnDevStudioClick = () => {
+    if (game) history.push(`/devstudios/${(game as Game).devStudio.id}`);
+  };
 
   return (
     <GameDetailViewStyled>
@@ -76,7 +81,10 @@ const GameDetailView = () => {
                 <p>{(game as Game).description}</p>
                 <p>
                   Created by{" "}
-                  <span className="devStudioName">
+                  <span
+                    className="devStudioName"
+                    onClick={handleOnDevStudioClick}
+                  >
                     {(game as Game).devStudio.name}
                   </span>
                 </p>
